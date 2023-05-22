@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moja Strona</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        header {
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        
+        header h1 {
+            font-size: 36px;
+        }
+        
+        #content {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        #content input[type="file"] {
+            margin-bottom: 10px;
+        }
+        
+        #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .image-container {
+            margin: 10px;
+        }
+        
+        .image-container img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 contenteditable="true">Adam Matysiak</h1>
+    </header>
+    
+    <div id="content">
+        <input type="file" id="fileInput">
+        <textarea id="textInput" placeholder="Wprowadź tekst"></textarea>
+        <button onclick="addImageAndText()">Dodaj</button>
+        
+        <div id="gallery"></div>
+    </div>
+    
+    <script>
+        function addImageAndText() {
+            var fileInput = document.getElementById('fileInput');
+            var textInput = document.getElementById('textInput').value;
+            var gallery = document.getElementById('gallery');
+            
+            var imageContainer = document.createElement('div');
+            imageContainer.classList.add('image-container');
+            
+            var image = document.createElement('img');
+            image.src = URL.createObjectURL(fileInput.files[0]);
+            
+            var text = document.createElement('p');
+            text.textContent = textInput;
+            
+            imageContainer.appendChild(image);
+            imageContainer.appendChild(text);
+            gallery.appendChild(imageContainer);
+            
+            fileInput.value = '';
+            textInput.value = '';
+        }
+    </script>
+</body>
+</html>
